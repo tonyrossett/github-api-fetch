@@ -1,5 +1,6 @@
-import { getUser } from './services/user.js'
-import {getRepositories } from './services/repositories.js'
+import { getUser } from './services/users.js'
+import { getRepositories } from './services/repositories.js'
+import { getAndExtactEvents } from './events.js'
 import { user } from './objects/user.js'
 import { screen } from './objects/screen.js'
 
@@ -28,7 +29,6 @@ function validateEmptyInput(userName){
 }
 
 async function getUserData(userName){
-    
     const userResponse = await getUser(userName)
 
     if(userResponse.message === "Not Found"){
@@ -37,9 +37,11 @@ async function getUserData(userName){
     }
 
     const repositoriesResponse = await getRepositories(userName)
+    const eventsResponse = await getAndExtactEvents(userName)
 
     user.setInfo(userResponse)
     user.setRepositories(repositoriesResponse)
+    user.setEvents(eventsResponse)
 
     screen.renderUser(user)
 
