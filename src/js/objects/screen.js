@@ -13,11 +13,11 @@ const screen = {
 
         let repositoriesItens = ''
         user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}"target="_blank">
-        <h1>${repo.name}</h1>
-        <p>🍴 ${repo.forks ?? ''}</p>
-        <p>⭐ ${repo.stars ?? ''}</p>
-        <p>👁 ${repo.watchers ?? ''}</p>
-        <p>💻 ${repo.language ?? ''}</p>
+            <h1>${repo.name}</h1>
+            <p>🍴 ${repo.forks ?? 'Nenhum fork até agora'}</p>
+            <p>⭐ ${repo.stars ?? 'Ninguem favoritou'}</p>
+            <p>👁 ${repo.watchers ?? 'Ninguem olhando este repositório'}</p>
+            <p>💻 ${repo.language ?? 'Não foi possível definir a linguagem'}</p>
         </li>`)
 
         if(user.repositories.length > 0) {
